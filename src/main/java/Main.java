@@ -15,6 +15,7 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
+import org.telegram.telegrambots.generics.BotSession;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import rss.*;
 import telegrambot.MyTestBot;
@@ -53,7 +54,8 @@ public class Main {
 
 
         try {
-            botsApi.registerBot(bot);
+            BotSession botSession = botsApi.registerBot(bot);
+
 
             SendMessage message1 = new SendMessage() // Create a SendMessage object with mandatory fields
                     .setChatId(-1001109075015L)
