@@ -1,39 +1,50 @@
-import org.apache.commons.mail.EmailException;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 import org.telegram.telegrambots.ApiContextInitializer;
 import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.generics.BotSession;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
-import rss.*;
 import telegrambot.MyTestBot;
 
-import javax.xml.stream.XMLStreamException;
-import java.io.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
-public class Main {
-
-    public static void main(String[] args){
+public class MainTelegram {
+    public static void main(String[] args) {
         System.out.println("Hello world");
 
 
+//        HttpHost proxy = new HttpHost("10.2.3.10", 8080);
+//
+//        RequestConfig config = RequestConfig.custom().setProxy(proxy).build();
+//        DefaultBotOptions options = new DefaultBotOptions();
+//        DefaultBotSession session = new DefaultBotSession();
+//
+//        options.setRequestConfig(config);
+
+        ApiContextInitializer.init();
+
+        TelegramBotsApi botsApi = new TelegramBotsApi();
+
+        TelegramLongPollingBot bot = new MyTestBot();
+//        bot.getOptions().setRequestConfig(config);
+
+
+        try {
+            BotSession botSession = botsApi.registerBot(bot);
+
+
+            SendMessage message1 = new SendMessage() // Create a SendMessage object with mandatory fields
+                    .setChatId(-1001109075015L)
+                    .setText("Фуф... Опять перезагружали....");
+            try {
+                bot.execute(message1);
+            } catch (TelegramApiException e) {
+                e.printStackTrace();
+            }
+
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+
+/*
         Date maxDate = new Date(0);
 
         ArrayList<UpworkFeed> upworkFeeds = new ArrayList<>();
@@ -81,7 +92,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+*/
     }
 }

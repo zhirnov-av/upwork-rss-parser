@@ -81,6 +81,52 @@ public class MyTestBot extends TelegramLongPollingBot {
         lastMessageDate = new Date();
     }
 
+    public MyTestBot(){
+        super();
+
+        helloMessages.addMessage("О-о-о блин! %s, чувак, ты тоже здесь!");
+        helloMessages.addMessage("Здорова боярин!");
+        helloMessages.addMessage("Ну наконец-то!!! Хоть кто-то тут живой, здорова, %s");
+        helloMessages.addMessage("Доброго времени суток, %s");
+        helloMessages.addMessage("Привет, %s");
+        helloMessages.addMessage("Сколько лет, сколько зим ?!, %s");
+        helloMessages.addMessage("Привет, Сири..., ой сорри, %s");
+
+        azureMessages.addMessage("А когда на лазурку? Хотя на филах было круче... может на филы?!");
+        azureMessages.addMessage("Ура-а-а-а на Лазурку!!!!!");
+        azureMessages.addMessage("Опять бухать... :/");
+        azureMessages.addMessage("Дорога - дорога, осталось так много...");
+        azureMessages.addMessage("Едем, едем на дискотеку...");
+
+        beerMessages.addMessage("А меня с собой возьмете?!");
+        beerMessages.addMessage("Вот бы кто меня позвал...");
+        beerMessages.addMessage("А вы все пьете... и пьете... тьфу на вас!!!");
+        beerMessages.addMessage("Бухло детектед!!!");
+        beerMessages.addMessage("ХЪЭЭ/:*:?*;№;)_(+_*(;;");
+
+        aboutMeMessages.addMessage("А чего сразу я - то?!");
+        aboutMeMessages.addMessage("Да, да... Я тут... Я все слышу...");
+        aboutMeMessages.addMessage("...");
+        aboutMeMessages.addMessage("Но-но поосторожней мне тут!");
+        aboutMeMessages.addMessage("Бот в первом поколении, зовут @Subchik, версия 1.0");
+
+        boreMessages.addMessage("О! Тут даже кто-то есть живой?! ;)");
+        boreMessages.addMessage("Хто здесь!?");
+        boreMessages.addMessage("Тут так было тихо и спокойно...");
+
+        dumbAnswerMessages.addMessage("Я че-то не врубаюсь... Ты чего хотел-то?");
+        dumbAnswerMessages.addMessage("Сколько заплатишь?");
+        dumbAnswerMessages.addMessage("Бляха, опять че-то спрашивают... Яж бот, яж не понимать!");
+        dumbAnswerMessages.addMessage("Вполне возможно, затрудняюсь ответить...");
+        dumbAnswerMessages.addMessage("О! блин. Хз, сейчас в инете поищем....");
+        dumbAnswerMessages.addMessage("Извините, сударь, но к великому сожалению, я не понял вашего вопроса.");
+        dumbAnswerMessages.addMessage("А это, ты бы у сири лучше спросил, бабы они такие, мож быстрей ответят :)");
+
+
+        lastMessageFrom = "";
+        lastMessageDate = new Date();
+    }
+
     private void sendGreetingMessage(Update update){
         String person = update.getMessage().getFrom().getFirstName();
         String message = String.format(helloMessages.getRandomMessage(), person);
